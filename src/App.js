@@ -12,6 +12,9 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import FoodsIndex from './components/foods/FoodsIndex'
+import ShowFood from './components/foods/ShowFood'
+import CreateFood from './components/foods/CreateFood'
 
 const App = () => {
 
@@ -53,21 +56,53 @@ const App = () => {
 						path='/sign-in'
 						element={<SignIn msgAlert={msgAlert} setUser={setUser} />}
 					/>
-          <Route
-            path='/sign-out'
-            element={
-              <RequireAuth user={user}>
-                <SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path='/change-password'
-            element={
-              <RequireAuth user={user}>
-                <ChangePassword msgAlert={msgAlert} user={user} />
-              </RequireAuth>}
-          />
+					<Route
+						path='/sign-out'
+						element={
+						<RequireAuth user={user}>
+							<SignOut msgAlert={msgAlert} clearUser={clearUser} user={user} />
+						</RequireAuth>
+						}
+					/>
+          			<Route
+						path='/change-password'
+						element={
+						<RequireAuth user={user}>
+							<ChangePassword msgAlert={msgAlert} user={user} />
+						</RequireAuth>}
+					/>
+					<Route
+						path='/foods'
+						element={
+							<FoodsIndex 
+								msgAlert={msgAlert} user={user} 
+							/>							
+						}
+					/>
+					<Route
+						path='/foods/:id'
+						element={
+							<ShowFood 
+								msgAlert={msgAlert} user={user} 
+							/>							
+						}
+					/>
+					<Route
+						path='/addFood'
+						element={
+							<CreateFood 
+								msgAlert={msgAlert} user={user} 
+							/>							
+						}
+					/>
+					<Route
+						path='/updateFood'
+						element={
+							<UpdateFood 
+								msgAlert={msgAlert} user={user} 
+							/>							
+						}
+					/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert
